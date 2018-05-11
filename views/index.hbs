@@ -1,2 +1,18 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+{{> header }}
+<h1></h1>
+<button class="btn btn-primary" id="button">New</button>
+
+<div class="well well-lg" id="results">
+  {{#if sampleresult}}
+  <p>{{sampleresult}}</p>
+  {{/if}}
+</div>
+
+<script type="text/javascript">
+  // $(document).on('click', '#button', function(){
+  //   $.get( '/sample', function(sampleresult) {
+  //     $('#results').html(sampleresult.asdf);
+  //     console.log(sampleresult)
+  //   });
+  // });
+</script>
