@@ -6,6 +6,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var hbs = require('hbs');
+var helpers = require('handlebars-helpers')();
 
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
@@ -38,6 +39,7 @@ app.use(passport.session());
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 hbs.registerPartials(__dirname + '/views');
+hbs.registerHelper(helpers);
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -46,11 +48,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
-app.use('/js', express.static(path.resolve(__dirname, './node_modules/bootstrap/dist/js')));
-app.use('/js', express.static(path.resolve(__dirname, './node_modules/jquery/dist/')));
-app.use('/css', express.static(path.resolve(__dirname, './node_modules/bootstrap/dist/css')));
-app.use('/fonts', express.static(path.resolve(__dirname, './node_modules/bootstrap/dist/fonts')));
 
 app.use('/', index);
 app.use('/users', users);
