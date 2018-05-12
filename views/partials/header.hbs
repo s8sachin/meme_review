@@ -10,10 +10,14 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Home</a></li>
-        <li><a href="#">Page 1</a></li>
-        <li><a href="#">Page 2</a></li> 
-        <li><a href="#">Page 3</a></li> 
+        <li  {{#equals nav 'home'}} class="active" {{/equals}}><a href="#">Memes</a></li>
+        {{#if user}}
+          <li>
+            {{!-- <a href="/meme/new_meme" {{#equals nav 'new_meme'}} class="active" {{/equals}}>New Meme</a> --}}
+          </li>
+          <li><a href="#">Page 2</a></li> 
+          <li><a href="#">Page 3</a></li>
+        {{/if}}
       </ul>
       <ul class="nav navbar-nav navbar-right">
         {{#if user}}
@@ -27,8 +31,14 @@
     </div>
   </div>
 </nav>
+{{nav}}
 {{#if flash}}
   <div id="flash" class="alert {{ flash.class }}">
     <strong>{{flash.message}}</strong> 
   </div>
 {{/if}}
+<script type="text/javascript">
+  setTimeout(function(){
+    $('#flash').remove();
+  }, 5000);
+</script>
