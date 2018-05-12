@@ -4,9 +4,14 @@ var User = require('../models/User');
 
 var memeController = {};
 
-// Restrict access to root page
 memeController.new = function(req, res) {
   res.render('meme/new', {
+    user: req.user
+  });
+};
+
+memeController.create = function(req, res) {
+  res.render('meme/create', {
     user: req.user
   });
 };

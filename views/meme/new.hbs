@@ -1,1 +1,31 @@
 {{> partials/header nav="new_meme"}}
+<div class="container">
+  <div class="row">
+    <div class="col-sm-4"></div>
+    <div class="col-sm-4 well">
+      <form class="form-signin form-horizontal center" role="form" action="/meme/create" method="post">
+        {{!-- <div class="field">
+          <label class="" for="inputName">Name:</label>
+          <input type="text" name="name" id="inputName" placeholder="name" required autofocus class="form-control">
+        </div><br> --}}
+        <div class="field">
+          <label class="" for="inputUsername">url:</label>
+          <input type="file" name="" class="form-control">
+          {{!-- <input type="text" name="username" id="inputUsername" placeholder="username" required class="form-control"> --}}
+        </div><br>
+        {{!-- <div class="field">
+          <label class="" for="inputEmail">Invitation Key:</label>
+          <input type="invitationKey" name="invitationKey" id="invitationKey" placeholder="" required class="form-control">
+        </div><br>
+        <div class="field">
+          <label class="" for="inputPassword">Password:</label>
+          <input type="password" name="password" id="inputPassword" required class="form-control">
+        </div><br> --}}
+        <div class="actions">
+          <button type="submit" class="btn btn-primary">Register</button>
+        </div>
+      </form>
+    </div>
+    <div class="col-sm-4"></div>
+  </div>
+</div>

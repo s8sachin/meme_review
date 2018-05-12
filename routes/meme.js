@@ -4,5 +4,6 @@ var meme = require('../controllers/MemeController.js');
 
 // new meme
 router.get('/new_meme', meme.new);
+router.post('/new_meme', meme.create);
 
 module.exports = router;
