@@ -42,13 +42,22 @@ hbs.registerPartials(__dirname + '/views');
 hbs.registerHelper(helpers);
 
 // uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public'), { maxAge: 3600000 }));
+// app.use(favicon(path.join(__dirname, 'public/images', 'favicon.png')));
 
+// authenticate user before path
+app.use((req, res, next) => {
+  if (req.user || ['/', '/login', '/register', '/meme/list'].includes(req.path)){
+    res.locals.user = req.user;
+    next();
+  } else {
+    res.redirect("/");
+  }
+});
 app.use('/', index);
 app.use('/users', users);
 app.use('/meme', meme);
