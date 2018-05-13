@@ -1,0 +1,6 @@
+{{> partials/header nav="meme_list"}}
+{{#if memes}}
+  {{#forEach memes}}
+    <p>{{name}}</p>
+  {{/forEach}}
+{{/if}}

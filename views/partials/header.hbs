@@ -6,12 +6,12 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span> 
       </button>
-      <a class="navbar-brand" href="/">WebSiteName</a>
+      <a class="navbar-brand" href="/">Meme Review</a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li {{#is nav 'home'}} class="active" {{/is}}>
-          <a href="#">Memes</a>
+        <li {{#is nav 'meme_list'}} class="active" {{/is}}>
+          <a href="/meme/list">Memes</a>
         </li>
         {{#if user}}
           <li {{#is nav 'new_meme'}} class="active" {{/is}}>
@@ -27,7 +27,7 @@
         <li><a href="#"><span class="glyphicon glyphicon-user"></span>{{user.name}}</a></li>
         {{else}}
         <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-        <li><a href="/register"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+        {{!-- <li><a href="/register"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li> --}}
         {{/if}}
       </ul>
     </div>
