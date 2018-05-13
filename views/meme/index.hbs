@@ -1,6 +1,47 @@
 {{> partials/header nav="meme_list"}}
-{{#if memes}}
+<div class="container">
+  <div class="row" style="overflow-x: auto">
+    <table class="table table table-responsive table-hover table-striped table-bordered">
+      <thead>
+        <th>Meme</th>
+        <th>Name</th>
+        <th>Pewds Ep no.</th>
+        <th>Pewds Ep url</th>
+        <th>Pewds Rating</th>
+      </thead>
+      <tbody>
+        {{#if memes}}
+          {{#forEach memes}}
+            <tr>
+              <td><img src="{{image_url}}" style="max-height: 50px"></td>
+              <td>{{name}}</td>
+              <td>{{meme_review_episode_num}}</td>
+              <td><a href="{{meme_review_episode_url}}">{{meme_review_episode_url}}</a></td>
+              <td>{{pewds_rating}}</a></td>
+            </tr>
+          {{/forEach}}
+        {{/if}}
+      </tbody>
+    </table>
+  </div>
+</div>
+{{!-- {{#if memes}}
   {{#forEach memes}}
-    <p>{{name}}</p>
+    <div class="col-sm-3 ordersCard" value="" data-toggle="modal" data-target="#orderDetails">
+      <div class="panel panel-primary bootcards-media">
+        <div class="panel-heading">
+          <h3 class="panel-title">{{name}}</h3>
+        </div>
+        <div class="panel-body">
+          <img src="{{image_url}}" class="img-responsive" style="max-width: 250px">
+        </div>
+        <div class="panel-footer">
+          <div class="btn-group btn-group-justified">
+            <div class="btn-group">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   {{/forEach}}
-{{/if}}
+{{/if}} --}}
