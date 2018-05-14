@@ -1,0 +1,26 @@
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="reset" class="close" data-dismiss="modal">&times;</button>
+      <h4 class="modal-title">Modal Header</h4>
+    </div>
+    <div class="modal-body">
+      <form class="form-horizontal center" role="form" action="/episode/new_episode" method="post" id="newEpisodeForm">
+        <div class="field">
+          <label class="" for="meme_review_episode_num">Meme Review Episode No:</label>
+          <input type="number" name="meme_review_episode_num" id="meme_review_episode_num" placeholder="" required class="form-control">
+        </div><br>
+        <div class="field">
+          <label class="" for="meme_review_episode_url">Meme Review Episode URL:</label>
+          <input type="url" name="meme_review_episode_url" id="meme_review_episode_url" required class="form-control">
+        </div><br>
+      </form>
+    </div>
+    <div class="modal-footer">
+      {{!-- <div class="actions"> --}}
+        <button type="submit" class="btn btn-primary" form="newEpisodeForm">Register</button>
+      {{!-- </div> --}}
+      <button type="reset" class="btn btn-default" data-dismiss="modal">Close</button>
+    </div>
+  </div>
+</div>

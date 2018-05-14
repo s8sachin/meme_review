@@ -9,7 +9,7 @@ memeController.new = function(req, res) {
 };
 
 memeController.create = function(req, res) {
-  img_url_original = req.body.image_url
+  img_url_original = req.body.image_url;
   meme = {
     name: req.body.name,
     image_urls: {
@@ -33,11 +33,11 @@ memeController.index = function(req, res) {
     res.render('meme/index', {
       memes: memes
     });
-  })
+  });
 };
 
 function set_image(image_url, size){
   return image_url.replace('.jpg', `${size}.jpg`).replace('.png', `${size}.png`).replace('.jpeg', `${size}.jpeg`).replace('.gif', `${size}.gif`)
-}
+};
 
 module.exports = memeController;

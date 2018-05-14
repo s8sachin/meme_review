@@ -14,6 +14,7 @@ var LocalStrategy = require('passport-local').Strategy;
 var index = require('./routes/index');
 var users = require('./routes/users');
 var meme = require('./routes/meme');
+var episode = require('./routes/episode');
 
 var app = express();
 var User = require('./models/User');
@@ -61,6 +62,7 @@ app.use((req, res, next) => {
 app.use('/', index);
 app.use('/users', users);
 app.use('/meme', meme);
+app.use('/episode', episode);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
