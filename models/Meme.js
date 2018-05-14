@@ -7,9 +7,35 @@ var MemeSchema = new Schema({
     type: String,
     required: true
   },
-  image_url: {
-    type: String,
-    required: true
+  image_urls: {
+    img_url_original : {
+      type: String,
+      required: true
+    },
+    img_url_small_square : {
+      type: String,
+      required: true
+    },
+    img_url_big_square : {
+      type: String,
+      required: true
+    },
+    img_url_small_thumb : {
+      type: String,
+      required: true
+    },
+    img_url_medium_thumb : {
+      type: String,
+      required: true
+    },
+    img_url_large_thumb : {
+      type: String,
+      required: true
+    },
+    img_url_huge_thumb : {
+      type: String,
+      required: true
+    }
   },
   meme_review_episode_num: {
     type: String,
