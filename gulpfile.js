@@ -1,5 +1,6 @@
 var gulp = require('gulp');
+var Seed = require('./tasks/Seed')
 
-gulp.task('hello', function(){
-  console.log("hi")
+gulp.task('seed', (done) => {
+  Seed.dumpEpisodes();
 });

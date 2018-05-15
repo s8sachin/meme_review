@@ -25,7 +25,7 @@ episodesController.create = function(req, res) {
 };
 
 episodesController.index = function(req, res) {
-  MemeReview.find({}).then(episodes => {
+  MemeReview.find({}).sort([['meme_review_episode_num', 'descending']]).then(episodes => {
     res.render('episode/index', {
       episodes: episodes
     });
