@@ -1,12 +1,12 @@
 {{> partials/header nav="meme_list"}}
 <div class="container">
-  {{!-- {{#if user}} --}}
+  {{#if user}}
     <div class="row">
       <button class="btn btn-primary pull-right" data-toggle="modal" data-target="#newMeme" id="newMemeBtn">
         New Meme
       </button>
     </div><br>
-  {{!-- {{/if}} --}}
+  {{/if}}
   <div class="row" style="overflow-x: auto">
     <table class="table table table-responsive table-hover table-striped table-bordered">
       <thead>

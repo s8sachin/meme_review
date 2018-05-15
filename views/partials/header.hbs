@@ -14,11 +14,8 @@
           <a href="/meme/list">Memes</a>
         </li>
         {{#if user}}
-          <li {{#is nav 'new_meme'}} class="active" {{/is}}>
-            <a href="/meme/new_meme">New Meme</a>
-          </li>
           <li {{#is nav 'episodes_list'}} class="active" {{/is}}>
-            <a href="#">Episodes</a>
+            <a href="/episode/list">Episodes</a>
           </li> 
           <li><a href="#">Page 3</a></li>
         {{/if}}

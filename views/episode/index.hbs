@@ -1,10 +1,12 @@
 {{> partials/header nav="episodes_list"}}
 <div class="container">
-  <div class="row">
-    <button class="btn btn-primary pull-right" data-toggle="modal" data-target="#newEpisode">
-      New Episode
-    </button>
-  </div><br>
+  {{#if user}}
+    <div class="row">
+      <button class="btn btn-primary pull-right" data-toggle="modal" data-target="#newEpisode">
+        New Episode
+      </button>
+    </div><br>
+  {{/if}}
   <div class="row" style="overflow-x: auto">
     <table class="table table table-responsive table-hover table-striped table-bordered">
       <thead>
