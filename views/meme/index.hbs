@@ -2,7 +2,7 @@
 <div class="container">
   {{!-- {{#if user}} --}}
     <div class="row">
-      <button class="btn btn-primary pull-right" data-toggle="modal" data-target="#newMeme">
+      <button class="btn btn-primary pull-right" data-toggle="modal" data-target="#newMeme" id="newMemeBtn">
         New Meme
       </button>
     </div><br>
@@ -32,9 +32,16 @@
     </table>
   </div>
 </div>
-<div id="newMeme" class="modal fade" role="dialog">
-  {{> meme/new }}
-</div>
+<div id="newMeme" class="modal fade" role="dialog"></div>
+<script type="text/javascript">
+$(document).on('click', '#newMemeBtn', function(){
+  $.ajax({
+    url: "/meme/new_meme"
+  }).done(function(dataHTML) {
+    $('#newMeme').html(dataHTML);
+  })
+});
+</script>
 {{!-- {{#if memes}}
   {{#forEach memes}}
     <div class="col-sm-3 ordersCard" value="" data-toggle="modal" data-target="#orderDetails">

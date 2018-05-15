@@ -6,7 +6,16 @@ var MemeReview = require('../models/MemeReview');
 var memeController = {};
 
 memeController.new = function(req, res) {
-  res.render('meme/new');
+  MemeReview.find({}, '_id meme_review_episode_num', {
+    sort: {
+      meme_review_episode_num: -1
+    }
+  }, (err, episodes_list) => {
+    res.render('meme/new', {
+      layout: false,
+      episodes_list: episodes_list
+    });
+  });
 };
 
 memeController.create = function(req, res) {
@@ -26,7 +35,7 @@ memeController.create = function(req, res) {
   };
   new Meme(meme).save((err, meme) => {
     if (err) {
-      console.log(err)
+      console.log(err);
     }
     res.redirect('/meme/list');
   });
@@ -34,15 +43,8 @@ memeController.create = function(req, res) {
 
 memeController.index = function(req, res) {
   Meme.find({}).then(memes => {
-    MemeReview.find({}, '_id meme_review_episode_num', {
-        sort: {
-          meme_review_episode_num: -1
-        }
-      }, (err, episodes_list) => {
-      res.render('meme/index', {
-        memes: memes,
-        episodes_list: episodes_list
-      });
+    res.render('meme/index', {
+      memes: memes
     });
   });
 };
