@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 var passport = require('passport');
 var Meme = require('../models/Meme');
+var MemeReview = require('../models/MemeReview');
 
 var memeController = {};
 
@@ -21,17 +22,27 @@ memeController.create = function(req, res) {
       img_url_large_thumb : set_image(img_url_original, 'l'),
       img_url_huge_thumb : set_image(img_url_original, 'h')
     },
-    meme_review_episode_num: req.body.meme_review_episode_num,
-    meme_review_episode_url: req.body.meme_review_episode_url
+    meme_review_id: req.body.meme_review_episode
   };
-  new Meme(meme).save(err => console.log(err));
-  res.redirect('/meme/new_meme');
+  new Meme(meme).save((err, meme) => {
+    if (err) {
+      console.log(err)
+    }
+    res.redirect('/meme/list');
+  });
 };
 
 memeController.index = function(req, res) {
   Meme.find({}).then(memes => {
-    res.render('meme/index', {
-      memes: memes
+    MemeReview.find({}, '_id meme_review_episode_num', {
+        sort: {
+          meme_review_episode_num: -1
+        }
+      }, (err, episodes_list) => {
+      res.render('meme/index', {
+        memes: memes,
+        episodes_list: episodes_list
+      });
     });
   });
 };

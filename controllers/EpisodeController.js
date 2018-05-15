@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 var passport = require('passport');
 var MemeReview = require('../models/MemeReview');
+var Meme = require('../models/Meme');
 
 var episodesController = {};
 
