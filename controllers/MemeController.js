@@ -31,7 +31,7 @@ memeController.create = function(req, res) {
       img_url_large_thumb : set_image(img_url_original, 'l'),
       img_url_huge_thumb : set_image(img_url_original, 'h')
     },
-    meme_review_id: req.body.meme_review_episode
+    meme_review: req.body.meme_review_episode
   };
   new Meme(meme).save((err, meme) => {
     if (err) {
@@ -42,7 +42,9 @@ memeController.create = function(req, res) {
 };
 
 memeController.index = function(req, res) {
-  Meme.find({}).then(memes => {
+  Meme.find({})
+  .populate('meme_review', 'meme_review_episode_num meme_review_episode_url')
+  .then(memes => {
     res.render('meme/index', {
       memes: memes
     });

@@ -37,9 +37,10 @@ var MemeSchema = new Schema({
       required: true
     }
   },
-  meme_review_id: {
+  meme_review: {
     type: Schema.Types.ObjectId,
-    required: true
+    required: true,
+    ref: 'MemeReview'
   },
   pewds_rating: {
     type: String,
