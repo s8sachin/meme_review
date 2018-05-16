@@ -16,6 +16,8 @@ var users = require('./routes/users');
 var meme = require('./routes/meme');
 var episode = require('./routes/episode');
 
+var meme_api = require('./routes/api/meme');
+
 var cookieSession = require('cookie-session')
 var app = express();
 var User = require('./models/User');
@@ -66,6 +68,8 @@ app.use('/users', users);
 app.use('/meme', meme);
 app.use('/episode', episode);
 
+app.use('/api/meme', meme_api)
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
@@ -81,7 +85,11 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  if (req.headers['content-type'] && req.headers['content-type'].includes('application/json')) {
+    res.json({message: res.locals.message});
+  } else {
+    res.render('error');
+  }
 });
 
 module.exports = app;
