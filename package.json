@@ -8,9 +8,9 @@
   "dependencies": {
     "body-parser": "~1.17.1",
     "cookie-parser": "~1.4.3",
+    "cookie-session": "^2.0.0-beta.3",
     "debug": "~2.6.3",
     "express": "~4.15.2",
-    "express-session": "^1.15.6",
     "gulp": "^3.9.1",
     "handlebars-helpers": "^0.10.0",
     "hbs": "~4.0.1",

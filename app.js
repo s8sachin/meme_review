@@ -16,6 +16,7 @@ var users = require('./routes/users');
 var meme = require('./routes/meme');
 var episode = require('./routes/episode');
 
+var cookieSession = require('cookie-session')
 var app = express();
 var User = require('./models/User');
 
@@ -27,11 +28,11 @@ mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost/meme-review')
   .then(() => console.log('connection succesful'))
   .catch((err) => console.error(err));
-
-app.use(require('express-session')({
-  secret: 'keyboard cat',
-  resave: false,
-  saveUninitialized: false
+  
+app.use(cookieSession({
+  name: 'session',
+  keys: ['keyboard cat'],
+  maxAge: 24 * 60 * 60 * 1000 // 24 hours
 }));
 app.use(passport.initialize());
 app.use(passport.session());
