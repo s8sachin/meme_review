@@ -24,11 +24,13 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
+// connect to db
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost/meme-review')
   .then(() => console.log('connection succesful'))
   .catch((err) => console.error(err));
-  
+ 
+// session 
 app.use(cookieSession({
   name: 'session',
   keys: ['keyboard cat'],
@@ -43,7 +45,6 @@ app.set('view engine', 'hbs');
 hbs.registerPartials(__dirname + '/views');
 hbs.registerHelper(helpers);
 
-// uncomment after placing your favicon in /public
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
