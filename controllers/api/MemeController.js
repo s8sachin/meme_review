@@ -5,6 +5,8 @@ var MemeReview = require('../../models/MemeReview');
 var memeController = {};
 
 memeController.index = function(req, res) {
+  start = req.query.start || 0;
+  show = req.query.show || 0;
   Meme.find({})
   .populate('meme_review', 'meme_review_episode_num meme_review_episode_url')
   .then(memes => {

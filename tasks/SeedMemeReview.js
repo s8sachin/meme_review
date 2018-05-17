@@ -10,10 +10,10 @@ mongoose.connect('mongodb://localhost/meme-review')
 .catch((err) => console.error(err));
  
 
-var Seed = {};
+var SeedMemeReview = {};
 
-Seed.dumpEpisodes = () => {
-  async.eachSeries(Seed.data, (item, callback) => {
+SeedMemeReview.dumpEpisodes = () => {
+  async.eachSeries(SeedMemeReview.data, (item, callback) => {
     new MemeReview(item).save((e,i) => {
       console.log(item)
       callback();
@@ -24,8 +24,8 @@ Seed.dumpEpisodes = () => {
   });
 };
 
-// Data array containing seed data - documents organized by Model
-Seed.data = [{
+// Data array containing seedMemeReview data - documents organized by Model
+SeedMemeReview.data = [{
     'meme_review_episode_url': 'https://www.youtube.com/watch?v=-KE8v44VS_k',
     'meme_review_episode_thumb': 'https://img.youtube.com/vi/-KE8v44VS_k/0.jpg'
   },
@@ -106,4 +106,4 @@ Seed.data = [{
     'meme_review_episode_thumb': 'https://img.youtube.com/vi/7PzSOvPTHPA/0.jpg'  
   }]
 
-module.exports = Seed
+module.exports = SeedMemeReview

@@ -31,6 +31,7 @@ mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost/meme-review')
   .then(() => console.log('connection succesful'))
   .catch((err) => console.error(err));
+mongoose.set('debug', true);
  
 // session 
 app.use(cookieSession({
@@ -56,10 +57,14 @@ app.use(express.static(path.join(__dirname, 'public'), { maxAge: 3600000 }));
 
 // authenticate user before path
 app.use((req, res, next) => {
-  if (req.user || ['/', '/login', '/register', '/meme/list'].includes(req.path)){
+  exceptional_routes = ['/', '/login', '/register', '/meme/list', '/api/meme/list']
+  if (req.user || exceptional_routes.includes(req.path)){
     res.locals.user = req.user;
     next();
   } else {
+    if (req.headers['content-type'] && req.headers['content-type'].includes('application/json')) {
+      return res.status(400).json({message: "Bad request"})
+    }
     res.redirect("/");
   }
 });
@@ -86,10 +91,9 @@ app.use(function(err, req, res, next) {
   // render the error page
   res.status(err.status || 500);
   if (req.headers['content-type'] && req.headers['content-type'].includes('application/json')) {
-    res.json({message: res.locals.message});
-  } else {
-    res.render('error');
+    return res.json({message: res.locals.message});
   }
+  res.render('error');
 });
 
 module.exports = app;

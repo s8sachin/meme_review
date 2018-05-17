@@ -31,7 +31,9 @@ memeController.create = function(req, res) {
       img_url_large_thumb : set_image(img_url_original, 'l'),
       img_url_huge_thumb : set_image(img_url_original, 'h')
     },
-    meme_review: req.body.meme_review_episode
+    meme_review: req.body.meme_review_episode,
+    bonus_meme: (req.body.bonus_meme ? true : false),
+    garbage_meme: (req.body.garbage_meme ? true : false)
   };
   new Meme(meme).save((err, meme) => {
     if (err) {
@@ -42,9 +44,20 @@ memeController.create = function(req, res) {
 };
 
 memeController.index = function(req, res) {
+  start = req.query.start || 0;
+  show = req.query.show || 0;
   Meme.find({})
+  .skip(Number(start))
+  .limit(Number(show))
   .populate('meme_review', 'meme_review_episode_num meme_review_episode_url')
-  .then(memes => {
+  .sort({'createdAt': 'descending'})
+  .exec((err, memes) => {
+    if(err) {
+      return console.log(err);
+    }
+    memes = memes.sort((a, b) => {
+      return (b.meme_review.meme_review_episode_num - a.meme_review.meme_review_episode_num)
+    })
     res.render('meme/index', {
       memes: memes
     });

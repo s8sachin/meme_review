@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var timestamps = require('mongoose-timestamp');
+
 var Schema = mongoose.Schema;
 
 var MemeSchema = new Schema({
@@ -46,6 +47,14 @@ var MemeSchema = new Schema({
     type: String,
     required: true,
     default: "Fill me"
+  },
+  bonus_meme: {
+    type: Boolean,
+    default: false
+  },
+  garbage_meme: {
+    type: Boolean,
+    default: false
   }
 });
 

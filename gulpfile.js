@@ -1,5 +1,5 @@
 var gulp = require('gulp');
-var Seed = require('./tasks/Seed')
+var SeedMemeReview = require('./tasks/SeedMemeReview')
 
 gulp.task('seed', (done) => {
   Seed.dumpEpisodes();
