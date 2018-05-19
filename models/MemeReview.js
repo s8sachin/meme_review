@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var timestamps = require('mongoose-timestamp');
+var deepPopulate = require('mongoose-deep-populate')(mongoose);
 var autoIncrement = require('mongoose-ai');
 var Schema = mongoose.Schema;
 
@@ -15,6 +16,7 @@ var MemeReviewSchema = new Schema({
 });
 
 MemeReviewSchema.plugin(timestamps);
+MemeReviewSchema.plugin(deepPopulate);
 autoIncrement.initialize(mongoose.connection);
 MemeReviewSchema.plugin(autoIncrement.plugin, {
     model: 'MemeReview',

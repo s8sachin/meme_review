@@ -57,7 +57,7 @@ app.use(express.static(path.join(__dirname, 'public'), { maxAge: 3600000 }));
 
 // authenticate user before path
 app.use((req, res, next) => {
-  exceptional_routes = ['/', '/login', '/register', '/meme/list', '/api/meme/list']
+  exceptional_routes = ['/', '/login', '/register', '/meme/list', '/api/meme/list', '/api/meme/search']
   if (req.user || exceptional_routes.includes(req.path)){
     res.locals.user = req.user;
     next();

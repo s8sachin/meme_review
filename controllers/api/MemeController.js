@@ -8,17 +8,29 @@ memeController.index = function(req, res) {
   start = req.query.start || 0;
   show = req.query.show || 0;
   projection = {_id: 0, __v: 0, createdAt: 0, updatedAt: 0};
-  Meme.find({})
+  Meme.find()
   .select(projection)
-  .populate('meme_review', projection)
+  .skip(Number(start))
+  .limit(Number(show))
+  .deepPopulate('meme_review', projection)
   .then(memes => {
     res.json({'memes': memes});
   })
   .catch(e => res.status(500).json({'error': e.message}));
 };
 
-function set_image(image_url, size){
-  return image_url.replace('.jpg', `${size}.jpg`).replace('.png', `${size}.png`).replace('.jpeg', `${size}.jpeg`).replace('.gif', `${size}.gif`)
+memeController.search = function(req, res) {
+  show = req.query.show || 0;
+  name = req.query.name;
+  projection = {_id: 0, __v: 0, createdAt: 0, updatedAt: 0};
+  Meme.find({name: new RegExp(name, 'i')})
+  .select(projection)
+  .limit(Number(show))
+  .deepPopulate('meme_review', projection)
+  .then(memes => {
+    res.json({'memes': memes});
+  })
+  .catch(e => res.status(500).json({'error': e.message}));
 };
 
 module.exports = memeController;

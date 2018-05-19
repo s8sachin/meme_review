@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 var timestamps = require('mongoose-timestamp');
-
+var deepPopulate = require('mongoose-deep-populate')(mongoose);
 var Schema = mongoose.Schema;
 
 var MemeSchema = new Schema({
@@ -59,4 +59,5 @@ var MemeSchema = new Schema({
 });
 
 MemeSchema.plugin(timestamps);
+MemeSchema.plugin(deepPopulate);
 module.exports = mongoose.model('Meme', MemeSchema);

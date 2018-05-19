@@ -50,7 +50,7 @@ memeController.index = function(req, res) {
   Meme.find({})
   .skip(Number(start))
   .limit(Number(show))
-  .populate('meme_review', 'meme_review_episode_num meme_review_episode_url')
+  .deepPopulate('meme_review', 'meme_review_episode_num meme_review_episode_url')
   .sort({'createdAt': 'descending'})
   .exec((err, memes) => {
     async.sortBy(memes, (x, callback) => {
