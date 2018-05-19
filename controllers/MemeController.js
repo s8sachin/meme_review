@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var passport = require('passport');
+var async = require('async');
 var Meme = require('../models/Meme');
 var MemeReview = require('../models/MemeReview');
 
@@ -52,14 +53,12 @@ memeController.index = function(req, res) {
   .populate('meme_review', 'meme_review_episode_num meme_review_episode_url')
   .sort({'createdAt': 'descending'})
   .exec((err, memes) => {
-    if(err) {
-      return console.log(err);
-    }
-    memes = memes.sort((a, b) => {
-      return (b.meme_review.meme_review_episode_num - a.meme_review.meme_review_episode_num)
-    })
-    res.render('meme/index', {
-      memes: memes
+    async.sortBy(memes, (x, callback) => {
+      callback(null, x.meme_review.meme_review_episode_num * -1);
+    }, (err, memes) => {
+      res.render('meme/index', {
+        memes: memes
+      });
     });
   });
 };
